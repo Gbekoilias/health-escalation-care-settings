@@ -1,5 +1,5 @@
 # Health Escalation in Care Settings  
-
+![Healthcare background](https://deescalation-training.com/wp-content/uploads/2023/04/De-Escalation-for-Healthcare-Workers-scaled.jpg)  
 This repository provides a detailed framework for identifying, documenting, and escalating health concerns in care settings. It includes structured communication methods (e.g., SBAR), organizational protocols, and illustrative examples to support timely and effective interventions.
 
 ## Table of Contents  
@@ -41,11 +41,11 @@ The repository includes:
 ## Illustrations  
 
 ### Example 1: SBAR Framework  
-![SBAR Communication Framework](images/sbar-framework.png)  
+![SBAR Communication Framework](https://skillgigs.com/wp-content/uploads/2024/12/002-185-1.jpg)  
 _An overview of the SBAR framework, detailing each step for structured communication._  
 
 ### Example 2: Escalation Flowchart  
-![Escalation Flowchart](images/escalation-flowchart.png)  
+![Escalation Flowchart](https://www.h2kinfosys.com/blog/wp-content/uploads/2024/06/Severity-vs-Priority.png)  
 _A visual guide showing how to escalate concerns based on severity._  
 
 ---
