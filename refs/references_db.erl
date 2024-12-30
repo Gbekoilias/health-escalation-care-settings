@@ -222,3 +222,84 @@ add_reference(Reference) ->
 get_references() ->
     references.
 
+-module(references_db).
+-export([init/0, insert_references/0, close/0]).
+
+-include_lib("mnesia/include/mnesia.hrl").
+
+init() ->
+    mnesia:create_schema([node()]),
+    mnesia:start(),
+    mnesia:create_table(reference, [
+        {attributes, record_info(fields, reference)}
+    ]).
+
+insert_references() ->
+    References = [
+        {reference, "Care Quality Commission (CQC)", 2019,
+         "How to raise a concern",
+         "Available at: https://www.cqc.org.uk",
+         "Accessed: 24 December 2024"},
+        {reference, "Health and Safety Executive (HSE)", 2022,
+         "Health and safety in care settings: Policies and procedures",
+         "Available at: https://www.hse.gov.uk",
+         "Accessed: 24 December 2024"},
+        {reference, "National Institute for Health and Care Excellence (NICE)", 2021,
+         "Managing acute deterioration in care settings",
+         "Available at: https://www.nice.org.uk",
+         "Accessed: 24 December 2024"},
+        {reference, "NHS England", 2018,
+         "SBAR communication tool – Situation, Background, Assessment, Recommendation",
+         "Available at: https://www.england.nhs.uk",
+         "Accessed: 24 December 2024"},
+        {reference, "Royal College of Physicians", 2017,
+         "National Early Warning Score (NEWS) 2 – Standardizing the assessment of acute illness severity in the NHS",
+         "Available at: https://www.rcplondon.ac.uk",
+         "Accessed: 24 December 2024"},
+        {reference, "Alagiakrishnan, K., & Wiens, C. A.", 2004,
+         "An approach to drug-induced delirium in the elderly",
+         "Postgraduate Medical Journal, 80(945), 388-393",
+         nil},
+        {reference, "Baglioni, C., Battagliese, G., Feige, B., Spiegelhalder, K., Nissen, C., & Riemann, D.", 2016,
+         "Insomnia as a predictor of depression: A meta-analytic evaluation of longitudinal epidemiological studies",
+         "Journal of Affective Disorders, 193, 10-19",
+         nil},
+        {reference, "Clegg, A., Young, J., Iliffe, S., Rikkert, M. O., & Rockwood, K.", 2013,
+         "Frailty in elderly people",
+         "The Lancet, 381(9868), 752-762",
+         nil},
+        {reference, "Coleman, S., Gorecki, C., Nelson, E. A., Closs, S. J., Defloor, T., Halfens, R., & Nixon, J.", 2014,
+         "Patient risk factors for pressure ulcer development: Systematic review",
+         "International Journal of Nursing Studies, 51(5), 947-962",
+         nil},
+        {reference, "Cornwell, E. Y., & Waite, L. J.", 2009,
+         "Social disconnectedness, perceived isolation, and health among older adults",
+         "Journal of Health and Social Behavior, 50(1), 31-48",
+         nil},
+        {reference, "El-Sharkawy, A. M., Watson, P., & Jack, S.", 2015,
+         "Hydration and outcome in older adults",
+         "Current Opinion in Clinical Nutrition & Metabolic Care, 18(1), 17-22",
+         nil},
+        {reference, "Herr, K., Coyne, P. J., McCaffery, M., Manworren, R., & Merkel, S.", 2011,
+         "Pain assessment in the patient unable to self-report: Position statement with clinical practice recommendations",
+         "Pain Management Nursing, 12(4), 230-250",
+         nil},
+        {reference, "Lacey, K., & Pritchett, E.", 2003,
+         "Nutritional assessment and intervention in older adults",
+         "British Journal of Nursing, 12(4), 237-241",
+         nil},
+        {reference, "National Institute for Health and Care Excellence (NICE)", 2021,
+         "Respiratory tract infections (self-limiting): NICE clinical guideline",
+         "Available at: https://www.nice.org.uk",
+         "Accessed: 24 December 2024"},
+        {reference, "National Institute of Mental Health", 2020,
+         "Depression",
+         "Available at: https://www.nimh.nih.gov/health/topics/depression",
+         "Accessed: 24 December 2024"}
+    ],
+    mnesia:transaction(fun() ->
+        lists:foreach(fun(Ref) -> mnesia:write(Ref) end, References)
+    end).
+
+close() ->
+    mnesia:stop().
